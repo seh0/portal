@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>게시판 목록</title>
+    <style>
+
+        h1 {
+            display: block;
+            text-align: center;
+        }
+
+        .list {
+            margin-top: 30px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: #f1fdf9;
+            border-radius: 12px;
+            min-height: 70vh;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 2px solid black;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid gray;
+            font-size: 16px;
+        }
+
+        .hov:hover {
+            background: #eaf8e3;
+            cursor: pointer;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+
+        button {
+            font-size: 20px;
+            background-color: #5a9;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="list">
+        <h1>게시판 목록</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board, iterStat : ${boards}"
+                class="hov"
+                th:onclick="|location.href='@{/boards/{id}(id=${board.id})}'|">
+                <td th:text="${iterStat.index + 1}"></td>
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.name}"></td>
+                <td th:text="${board.createAt}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="button-container">
+    <button type="button" onclick="location.href='/boardWrite'">글쓰기</button>
+    </div>
+</div>
+</body>
+</html>
