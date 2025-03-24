@@ -29,9 +29,6 @@ public class BoardController {
     @GetMapping("/boards/{id}")
     public String getBoardById(@PathVariable Long id, Model model) {
         Board board = boardService.getBoardById(id);
-        if (board == null) {
-            return "redirect:/boards";
-        }
         model.addAttribute("board", board);
         return "module5/boardDetail";
     }
@@ -49,26 +46,21 @@ public class BoardController {
 
     @PostMapping("/boards/delete/{id}")
     public String deleteBoardById(@PathVariable Long id) {
-        if (boardService.deleteBoardById(id)) {
-            return "redirect:/boards";
-        } else {
-            return "redirect:/boards";
-        }
+        boardService.deleteBoardById(id);
+        return "redirect:/boards";
+
     }
 
     @GetMapping("/boards/edit/{id}")
     public String editBoardForm(@PathVariable Long id, Model model) {
         Board board = boardService.getBoardById(id);
-        if (board == null) {
-            return "redirect:/boards";
-        }
         model.addAttribute("board", board);
         return "module5/boardEdit";
     }
 
     @PostMapping("/boards/{id}")
     public String updateBoard(@PathVariable Long id, Board updatedBoard) {
-        Board updated = boardService.updateBoard(id, updatedBoard);
+        boardService.updateBoard(id, updatedBoard);
         return "redirect:/boards";
     }
 }
