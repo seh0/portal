@@ -78,6 +78,17 @@
             </thead>
             <tbody>
             <tr th:each="board, iterStat : ${boards}"
+                th:if="${board.name == '관리자'}"
+                class="hov"
+                th:onclick="|location.href='@{/boards/{id}(id=${board.id})}'|">
+                <td th:text="${iterStat.index + 1}"></td>
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.name}"></td>
+                <td th:text="${board.createAt}"></td>
+            </tr>
+
+            <tr th:each="board, iterStat : ${boards}"
+                th:if="${board.name != '관리자'}"
                 class="hov"
                 th:onclick="|location.href='@{/boards/{id}(id=${board.id})}'|">
                 <td th:text="${iterStat.index + 1}"></td>

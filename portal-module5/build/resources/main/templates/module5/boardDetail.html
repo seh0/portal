@@ -71,8 +71,8 @@
         <h4>작성자: <span th:text="${board.name}"></span><br>
             작성일: <span th:text="${board.createAt}"></span></h4>
         <div class="button-container">
-            <button type="button" th:onclick="|location.href='@{/boards/edit/{id}(id=${board.id})}'|">수정</button>
-            <form th:action="@{/boards/delete/{id}(id=${board.id})}" method="post">
+            <button type="button" th:if="${board.name == session.userName or session.userName == '관리자'}" th:onclick="|location.href='@{/boards/edit/{id}(id=${board.id})}'|">수정</button>
+            <form th:if="${board.name == session.userName or session.userName == '관리자'}" th:action="@{/boards/delete/{id}(id=${board.id})}" method="post">
                 <button type="submit" class="delBtn">삭제</button>
             </form>
             <button type="button" class="backBtn" onclick="history.back()">목록으로</button>

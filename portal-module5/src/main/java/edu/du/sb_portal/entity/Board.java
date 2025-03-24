@@ -3,7 +3,7 @@ package edu.du.sb_portal.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "board")
@@ -17,12 +17,12 @@ public class Board {
     private String name;
     private String title;
     private String contents;
-    private LocalDate createAt;
+    private LocalDateTime createAt;
 
     @PrePersist
     public void prePersist() {
         if (createAt == null) {
-            createAt = LocalDate.now();
+            createAt = LocalDateTime.now().withSecond(0).withNano(0);
         }
     }
 }

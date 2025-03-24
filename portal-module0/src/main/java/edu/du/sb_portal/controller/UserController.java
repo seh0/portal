@@ -52,7 +52,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate(); // 세션 삭제
-        return "redirect:http://localhost:8087"; // 로그아웃 후 메인 페이지로 이동
+        session.invalidate();
+        return "redirect:http://localhost:8087";
     }
 }
