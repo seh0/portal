@@ -78,7 +78,7 @@
             <input type="text" id="title" name="title" required/>
 
             <label for="name">작성자:</label>
-            <input type="text" id="name" name="name" required/>
+            <input type="text" id="name" name="name" th:value="${session.userName ?: 'Guest'}" readonly/>
 
             <label for="contents">내용:</label>
             <textarea id="contents" name="contents" required></textarea>

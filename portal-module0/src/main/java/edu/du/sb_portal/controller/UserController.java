@@ -49,4 +49,10 @@ public class UserController {
             return "module0/login";
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 삭제
+        return "redirect:http://localhost:8087"; // 로그아웃 후 메인 페이지로 이동
+    }
 }

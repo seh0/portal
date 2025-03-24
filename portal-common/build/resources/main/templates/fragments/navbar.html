@@ -31,7 +31,14 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="http://localhost:8089/login" class="btn btn-outline-primary me-2">로그인</a>
+                    <th:block th:if="${session.userName != null}">
+                        <h4>Welcome, <span th:text="${session.userName}"></span></h4>
+                        <a href="http://localhost:8089/logout" class="btn btn-outline-danger me-2">로그아웃</a>
+                    </th:block>
+
+                    <a th:if="${session.userName == null}"
+                       href="http://localhost:8089/login" class="btn btn-outline-primary me-2">로그인</a>
+
                     <a href="#" class="btn btn-primary">시작하기</a>
                 </div>
             </div>
